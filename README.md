@@ -39,18 +39,18 @@
 1. Install [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. Download this [fsnd-virtual-machine](https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59125904_fsnd-virtual-machine/fsnd-virtual-machine.zip) file
 3. Extract the zip file and clone this repo inside **vagrant/catalog/** directory
-4. After that open up a terminal inside the **vagrant/** directory and enter the command `vagrant up`. It will start downloading the necessary files
-5. Then enter, `vagrant ssh` to login to the virtual machine
-6. After that, enter `cd /vagrant/` and then `sudo pip install -r requirements.txt` to install the dependencies
-7. Change your location to **/vagrant/catalog/[PROJECT_FOLDER]/** directory which you have previously cloned
+4. After that open up a terminal inside the **vagrant/** directory and run the command `vagrant up`. It will start downloading the necessary files
+5. Then run, `vagrant ssh` to login to the virtual machine
+6. After that, run `cd /vagrant/catalog/Food-Catalog/`
+7. Then run `sudo pip install -r requirements.txt` to install the dependencies
 8. <em>(Optional)</em>
-    Setup the database and initialize it with some data
+    Setup the database and initialize it with some data by running
 
     ```
     $ python database_setup.py
     $ python populate_database.py
     ```
-9. Start the local web server
+9. Start the local web server by running
 
     ```
     python catalog.py
