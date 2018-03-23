@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!--For mobile responsiveness-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Food Catalog</title>
+    <!--Import bootstrap.css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!--Import style.css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!--Requirements for Google Sign-in-->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="//apis.google.com/js/platform.js?onload=start"> </script>
+</head>
+<body onload="myFunction()">
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div id="snackbar">{{message}}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+{% block content %}
+{% endblock %}
+
+<script>
+    function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar")
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 5 seconds, remove the show class from DIV
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+    }
+</script>
+</body>
+</html>
