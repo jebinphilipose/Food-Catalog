@@ -1,7 +1,13 @@
-from flask import (Flask, abort,
-                   render_template, request, redirect, url_for, flash, jsonify,
-                   session as login_session, make_response
-                   )
+from flask import (Flask,
+                   abort,
+                   render_template,
+                   request,
+                   redirect,
+                   url_for,
+                   flash,
+                   jsonify,
+                   session as login_session,
+                   make_response)
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
