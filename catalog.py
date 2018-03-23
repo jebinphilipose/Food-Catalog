@@ -276,8 +276,8 @@ def edit_category(category):
     if 'username' not in login_session:
         return redirect('/login')
     # Check if the current user is the original creator
-    cat = session.query(Category).filter_by(name=category).one()
-    if login_session['user_id'] != cat.user_id:
+    cat = session.query(Category).filter_by(name=category).one_or_none()
+    if cat is not None and login_session['user_id'] != cat.user_id:
         flash("You can only edit the category you've created!")
         return redirect(url_for('show_items', category=cat.name))
     # View the edit category page
@@ -325,8 +325,8 @@ def delete_category(category):
     if 'username' not in login_session:
         return redirect('/login')
     # Check if the current user is the original creator
-    cat = session.query(Category).filter_by(name=category).one()
-    if login_session['user_id'] != cat.user_id:
+    cat = session.query(Category).filter_by(name=category).one_or_none()
+    if cat is not None and login_session['user_id'] != cat.user_id:
         flash("You can only delete the category you've created!")
         return redirect(url_for('show_items', category=cat.name))
     # View the delete category page
@@ -396,8 +396,9 @@ def edit_item(category, name):
     if 'username' not in login_session:
         return redirect('/login')
     # Check if the current user is the original creator
-    i = session.query(Item).filter_by(name=name, category_name=category).one()
-    if login_session['user_id'] != i.user_id:
+    i = session.query(Item).filter_by(name=name, category_name=category)\
+               .one_or_none()
+    if i is not None and login_session['user_id'] != i.user_id:
         flash("You can only edit the item you've created!")
         return redirect(url_for('show_description', category=i.category_name,
                                 name=name))
@@ -463,8 +464,9 @@ def delete_item(category, name):
     if 'username' not in login_session:
         return redirect('/login')
     # Check if the current user is the original creator
-    i = session.query(Item).filter_by(name=name, category_name=category).one()
-    if login_session['user_id'] != i.user_id:
+    i = session.query(Item).filter_by(name=name, category_name=category)\
+               .one_or_none()
+    if i is not None and login_session['user_id'] != i.user_id:
         flash("You can only delete the item you've created!")
         return redirect(url_for('show_description', category=i.category_name,
                                 name=name))
