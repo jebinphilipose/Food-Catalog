@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <!--For mobile responsiveness-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--For responsiveness-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Catalog</title>
     <!--Import bootstrap.css-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
@@ -28,13 +28,10 @@
 
 <script>
     function myFunction() {
-        // Get the snackbar DIV
         var x = document.getElementById("snackbar")
-
-        // Add the "show" class to DIV
+        // Add the "show" class to snackbar div
         x.className = "show";
-
-        // After 5 seconds, remove the show class from DIV
+        // After 5 seconds, remove the "show" class from snackbar div
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
     }
 </script>

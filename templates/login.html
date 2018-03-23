@@ -30,7 +30,7 @@
         function signInCallback(authResult) {
             if (authResult['code']) {
                 $('.parent').attr('style', 'display: none');
-                    // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+                // Send the one-time code to gconnect server
                 $.ajax({
                     type: 'POST',
                     url: '/gconnect?state={{STATE}}',
