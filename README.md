@@ -70,6 +70,13 @@
 * `/api/v1/category/<string:category>/item/<string:item>/JSON/` --> Returns JSON of a particular item of a category
 * `/api/v1/catalog/categories/JSON/` --> Returns JSON of all the categories present in the database
 
+## References
+
+* Bootstrap Documentation
+* Snackbar/Toast learnt from W3Schools
+* .gitignore file made with gitignore.io
+* Stack Overflow for debugging errors
+
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the [LICENSE](LICENSE) file for details
