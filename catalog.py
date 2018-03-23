@@ -257,10 +257,8 @@ def add_category():
         # Check if the category already exists
         if session.query(Category)\
                   .filter_by(name=request.form['name']).one_or_none():
-            return """<script>function myFunction() {
-                      alert('Category Already Exists!');
-                      window.history.back();
-                      }</script><body onload='myFunction()'>"""
+            flash('Category already exists!')
+            return redirect(url_for('add_category'))
         # Else add it to database
         else:
             category = Category(name=request.form['name'],
@@ -300,15 +298,11 @@ def edit_category(category):
         if session.query(Category)\
                   .filter_by(name=request.form['name']).one_or_none():
             if request.form['name'] == category:
-                return """<script>function myFunction() {
-                          alert('Nothing Changed! Please make some changes.');
-                          window.history.back();
-                          }</script><body onload='myFunction()'>"""
+                flash('Nothing changed! Please make some changes!')
+                return redirect(url_for('edit_category', category=category))
             else:
-                return """<script>function myFunction() {
-                          alert('Category Already Exists!');
-                          window.history.back();
-                          }</script><body onload='myFunction()'>"""
+                flash('Category already exists!')
+                return redirect(url_for('edit_category', category=category))
         # Else edit the category
         else:
             c = session.query(Category).filter_by(name=category).one()
@@ -380,10 +374,8 @@ def add_item(category):
         if session.query(Item)\
                   .filter_by(category_name=request.form['category'],
                              name=request.form['name']).one_or_none():
-            return """<script>function myFunction() {
-                      alert('Item already exists for that Category!');
-                      window.history.back();
-                      }</script><body onload='myFunction()'>"""
+            flash('Item already exists for that category!')
+            return redirect(url_for('add_item', category=category))
         # Else add it to the database
         else:
             item = Item(name=request.form['name'],
@@ -432,10 +424,9 @@ def edit_item(category, name):
             if request.form['name'] == name and\
                request.form['category'] == category and\
                request.form['description'] == item.description:
-                return """<script>function myFunction() {
-                      alert('Nothing Changed. Please make some changes!');
-                      window.history.back();
-                      }</script><body onload='myFunction()'>"""
+                flash('Nothing changed. Please make some changes!')
+                return redirect(url_for('edit_item', category=category,
+                                name=name))
             # If we are just changing the description make changes
             elif request.form['name'] == name and\
                     request.form['category'] == category and\
@@ -450,10 +441,9 @@ def edit_item(category, name):
                                 category=item.category_name))
             # If the item matches some other item
             else:
-                return """<script>function myFunction() {
-                       alert('Item already exists for that Category!');
-                       window.history.back();
-                       }</script><body onload='myFunction()'>"""
+                flash('Item already exists for that category!')
+                return redirect(url_for('edit_item', category=category,
+                                name=name))
         # Else make changes
         else:
             item.name = request.form['name']
