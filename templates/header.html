@@ -1,0 +1,19 @@
+<header>
+    <nav class="navbar navbar-dark nav-bg">
+        <div class="container">
+            <a href="{{url_for('show_catalog')}}"><span class="navbar-brand mb-0 h1">Food Catalog</span></a>
+            {% if page != 'login' %}
+                {% if 'access_token' in login_session %}
+                    <form class="form-inline">
+                        <img src="{{login_session['picture']}}" style="border-radius: 50%; width: 60px; height: 60px;">
+                        <a href="{{url_for('gdisconnect')}}" class="btn btn-outline-secondary" role="button" style="margin-left: 20px;">Logout</a>
+                    </form>
+                {% else %}
+                    <form class="form-inline">
+                        <a href="{{url_for('show_login')}}" class="btn btn-outline-secondary" role="button">Login</a>
+                    </form>
+                {% endif %}
+            {% endif %}
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,64 @@
+{% extends "main.html" %}
+{% block content %}
+    {% include "header.html" %}
+    <main>
+        <div class="container parent" style="height: 85vh;display: table;">
+            <div class="child" style="display: table-cell;vertical-align: middle;">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ url_for('static', filename='images/google_logo.png') }}" alt="Google Image" style="border: 0; width: 14rem; margin: 0 auto; margin-top: 30px;">
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">Sign in</h5>
+                        <hr>
+                        <div id="signinButton" style="display: inline-block;">
+                            <span class="g-signin"
+                                data-scope="openid email"
+                                data-clientid="791405065927-9to44ltqvt0348pfnuct2duvbmg88tck.apps.googleusercontent.com"
+                                data-redirecturi="postmessage"
+                                data-accesstype="offline"
+                                data-cookiepolicy="single_host_origin"
+                                data-callback="signInCallback">
+                            </span>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="result"></div>
+    </main>
+    <!--SCRIPT FOR GOOGLE SIGN IN -->
+    <script>
+        function signInCallback(authResult) {
+            if (authResult['code']) {
+                $('.parent').attr('style', 'display: none');
+                    // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+                $.ajax({
+                    type: 'POST',
+                    url: '/gconnect?state={{STATE}}',
+                    processData: false,
+                    data: authResult['code'],
+                    contentType: 'application/octet-stream; charset=utf-8',
+                    success: function(result) {
+                        if (result) {
+                            $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+                            setTimeout(function() {
+                                var x = document.referrer
+                                if (x == "") {
+                                    window.location.href = "/"
+                                }
+                                else {
+                                    window.location = x;
+                                }
+                            }, 4000);
+                        }
+                        else if (authResult['error']) {
+                            console.log('There was an error: ' + authResult['error']);
+                        }
+                        else {
+                            $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+{% endblock %}
