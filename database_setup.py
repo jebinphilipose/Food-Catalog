@@ -35,7 +35,7 @@ class Item(Base):
                   onupdate=func.now())
     id = Column(Integer, primary_key=True)
     name = Column(String(50), nullable=False)
-    description = Column(String(1000))
+    description = Column(String())
     category_name = Column(String(50), ForeignKey('category.name'))
     category = relationship(Category)
     user_id = Column(Integer, ForeignKey('user.id'))
