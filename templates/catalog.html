@@ -6,7 +6,7 @@
             <div class="jumbotron">
                 <div class="row">
                     <div class="col-md-6 left-column">
-                        <h1 class="text-center">Categories</h1>
+                        <h1>Categories</h1>
                         {% for c in categories %}
                             <a href="{{url_for('show_items', category=c.name)}}"><div class="click-list"><h5 class="lead">{{c.name}}</h5></div></a>
                         {% endfor %}
@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-md-6">
                         <div id="items">
-                            <h1 class="text-center">Latest Items</h1>
+                            <h1>Latest Items</h1>
                             {% for i in items %}
                                 <div class="item"><h5 class="lead">{{i.name}} <em>({{i.category_name}})</em></h5></div>
                             {% endfor %}
