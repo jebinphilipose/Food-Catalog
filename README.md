@@ -1,4 +1,4 @@
-# Food Catalog ([Live](http://35.224.31.108.xip.io))
+# Food Catalog
 
 ## Project Overview
 
