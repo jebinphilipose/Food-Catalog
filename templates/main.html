@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <!--For responsiveness-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="791405065927-ps7hv6kri6q0cdek4na5m4dqak8ru2gn.apps.googleusercontent.com">
     <title>Food Catalog</title>
     <!--Import bootstrap.css-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
@@ -11,7 +12,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!--Requirements for Google Sign-in-->
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script src="//apis.google.com/js/platform.js?onload=start"> </script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
 </head>
 <body onload="myFunction()">
 
@@ -27,6 +28,14 @@
 {% endblock %}
 
 <script>
+    function start() {
+        gapi.load('auth2', function() {
+            auth2 = gapi.auth2.init({
+                client_id: '791405065927-ps7hv6kri6q0cdek4na5m4dqak8ru2gn.apps.googleusercontent.com',
+            });
+        });
+    }
+
     function myFunction() {
         var x = document.getElementById("snackbar")
         // Add the "show" class to snackbar div

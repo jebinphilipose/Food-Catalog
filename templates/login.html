@@ -10,14 +10,13 @@
                         <h5 class="card-title">Sign in</h5>
                         <hr>
                         <div id="signinButton" style="display: inline-block;">
-                            <span class="g-signin"
+                            <span class="g-signin2"
                                 data-scope="openid email"
-                                data-clientid="791405065927-9to44ltqvt0348pfnuct2duvbmg88tck.apps.googleusercontent.com"
                                 data-redirecturi="postmessage"
                                 data-accesstype="offline"
                                 data-cookiepolicy="single_host_origin"
                                 data-callback="signInCallback">
-                            </span>  
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -27,6 +26,10 @@
     </main>
     <!--SCRIPT FOR GOOGLE SIGN IN -->
     <script>
+        $('#signinButton').click(function() {
+            auth2.grantOfflineAccess().then(signInCallback);
+        });
+
         function signInCallback(authResult) {
             if (authResult['code']) {
                 $('.parent').attr('style', 'display: none');
