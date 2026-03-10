@@ -169,3 +169,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+client_secrets.json
